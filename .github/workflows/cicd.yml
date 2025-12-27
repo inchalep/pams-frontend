@@ -27,4 +27,4 @@ jobs:
       - name: Remove existing docker container
         run: docker rm -f pams-frontend
       - name: Run container
-        run: docker run -d -p 5173:80 --name pams-frontend -e VITE_BACKEND_URL='${{ secrets.VITE_BACKEND_URL }}' dnyaneshwarinchale/pams-frontend:latest
+        run: docker run -d -p 3000:80 --name pams-frontend -e VITE_BACKEND_URL='${{ secrets.VITE_BACKEND_URL }}' dnyaneshwarinchale/pams-frontend:latest
