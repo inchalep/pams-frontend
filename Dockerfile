@@ -13,7 +13,7 @@ RUN npm run build
 
 # ---------- NGIX ------
 
-FROM nginx:1.28.1-alpine
+FROM nginx:1.23-alpine
 
 WORKDIR /usr/share/nginx/html
 
