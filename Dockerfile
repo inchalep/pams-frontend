@@ -6,7 +6,7 @@ ARG VITE_BACKEND_URL
 
 ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
 
-WORKDIR /app
+WORKDIR /app 
 
 COPY package*.json ./
 
@@ -28,6 +28,9 @@ RUN rm -rf *
 
 # Copy Vite build output to nginx
 COPY --from=build /app/dist .
+
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
