@@ -14,7 +14,7 @@ jobs:
       - name: Login to docker account
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t dnyaneshwarinchale/pams-frontend --build-arg VITE_BACKEND_URL='${{secrets.VITE_BACKEND_UR}}' .
+        run: docker build -t dnyaneshwarinchale/pams-frontend --build-arg VITE_BACKEND_URL='${{secrets.VITE_BACKEND_URL}}' .
       - name: Push image on docker hub
         run: docker push dnyaneshwarinchale/pams-frontend:latest
 
@@ -27,4 +27,4 @@ jobs:
       - name: Remove existing docker container
         run: docker rm -f pams-frontend
       - name: Run container
-        run: docker run -d -p 3000:80 --name pams-frontend -e VITE_BACKEND_URL='${{secrets.VITE_BACKEND_UR}}' dnyaneshwarinchale/pams-frontend:latest
+        run: docker run -d -p 3000:80 --name pams-frontend -e VITE_BACKEND_URL='${{secrets.VITE_BACKEND_URL}}' dnyaneshwarinchale/pams-frontend:latest
