@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .err {
+    @apply text-red-800 text-sm
+  }
+}
