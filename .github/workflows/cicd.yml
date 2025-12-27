@@ -1,0 +1,30 @@
+name: Deploy PAMS app frontend
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Login to docker account
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker Image
+        run: docker build -t dnyaneshwarinchale/pams-frontend .
+      - name: Push image on docker hub
+        run: docker push dnyaneshwarinchale/pams-frontend:latest
+
+  deploy:
+    needs: build
+    runs-on: Linux
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull dnyaneshwarinchale/pams-frontend:latest
+      - name: Remove existing docker container
+        run: docker rm -f pams-frontend
+      - name: Run container
+        run: docker run -d -p 8000:8000 --name pams-frontend -e VITE_BACKEND_URL='${{ secrets.VITE_BACKEND_URL }}' dnyaneshwarinchale/pams-frontend:latest
