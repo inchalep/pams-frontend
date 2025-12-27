@@ -50,7 +50,6 @@ const PetForm = () => {
       };
 
       const res = await _post(`/api/pets/addPet`, payload);
-      console.log(res,'res:::')
       navigate("/");
     } catch (error) {
       alert(error?.response?.data?.message);
