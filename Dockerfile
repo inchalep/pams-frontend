@@ -1,5 +1,11 @@
 FROM node:20-alpine as build
 
+# Set default values to env variable
+
+ARG VITE_BACKEND_URL
+
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
 WORKDIR /app
 
 COPY package*.json ./
